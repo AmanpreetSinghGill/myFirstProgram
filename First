@@ -1,0 +1,470 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;
+
+namespace Amanpreet_Singh_Assigment2
+{
+    public partial class AmanpreeetSinghForm : Form
+    {
+        public AmanpreeetSinghForm()
+        {
+            InitializeComponent();
+        }
+
+
+
+        private void CSIS1275checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            //show and remove clicked check box in list box.
+            if (CSIS1275checkBox.Checked)
+            {
+                CourselistBox.Items.Add(" Programming  part 2 (java)");
+
+            }
+            else
+            {
+                CourselistBox.Items.Remove(" Programming  part 2 (java)");
+            }
+        }
+
+        private void SubmitButton_Click(object sender, EventArgs e)
+        {
+            //make password and display and message.
+            if (inputPaswordtextBox.Text == "aman")
+            {
+                MessageBox.Show("Password is correct");
+            }
+            else
+            {
+                MessageBox.Show("password is incorrect");
+            }
+        }
+
+        private void Resultbutton_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                double grade;    // declare the variable.
+
+                //get the value from inputscore text box.
+                grade = double.Parse(NumbertextBox.Text);
+
+                //determine the grades.
+                if (grade < 55)
+                {
+                    Gradelabel.Text = "F";
+                }
+                else if (grade < 60)
+                {
+                    Gradelabel.Text = "E";
+                }
+                else if (grade < 75)
+                {
+                    Gradelabel.Text = "D";
+                }
+                else if (grade < 80)
+                {
+                    Gradelabel.Text = "C";
+                }
+                else if (grade <= 90)
+                {
+                    Gradelabel.Text = "B";
+                }
+                else if (grade >= 91 & grade <= 100)
+                {
+                    Gradelabel.Text = "A";
+                }
+                else
+                {
+                    MessageBox.Show(" Invalid Input ");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Exception.message");
+            }
+        }
+
+        private void CSIS2280checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // show and remove clicked check box in list box.
+            if (CSIS2280checkBox.Checked)
+            {
+                CourselistBox.Items.Add("Web server adminstration");
+
+            }
+            else
+            {
+                CourselistBox.Items.Remove("Web server adminstration");
+            }
+        }
+
+        private void JAvaradioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            //click on  java radio button and value display in label box
+            if (JAvaradioButton.Checked)
+            {
+                selectedRadioOutputlabel.Text = "you selected Java";
+            }
+
+        }
+
+        private void RubyradioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            //click on  java radio button and value display in label box.
+            if (RubyradioButton.Checked)
+            {
+                selectedRadioOutputlabel.Text = "you selected Ruby";
+            }
+
+        }
+
+        private void PHPradioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            //click on  java radio button and value display in label box.
+            if (PHPradioButton.Checked)
+            {
+                selectedRadioOutputlabel.Text = "you selected PHP";
+            }
+        }
+
+        private void CSIS1175checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            //show and remove clicked check box in list box.
+            if (CSIS1175checkBox.Checked)
+            {
+                CourselistBox.Items.Add("Programming part 1 (c#)");
+
+            }
+            else
+            {
+                CourselistBox.Items.Remove("Programming part 1 (c#)");
+            }
+
+        }
+
+        private void CSIS2200checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            //show and remove clicked check box in list box.
+            if (CSIS2200checkBox.Checked)
+            {
+                CourselistBox.Items.Add("System analysis and design");
+
+            }
+            else
+            {
+                CourselistBox.Items.Remove("System analysis and design");
+            }
+        }
+
+        private void CSIS1280checkBOX_CheckedChanged(object sender, EventArgs e)
+        {
+            // show and remove clicked check box in list box.
+            if (CSIS1280checkBOX.Checked)
+            {
+                CourselistBox.Items.Add("Font web development");
+
+            }
+            else
+            {
+                CourselistBox.Items.Remove("Font web development");
+            }
+        }
+
+        private void termlistBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                //declare the varible.
+                string term;
+                term = (string)termlistBox.SelectedItem; // Cast declaration
+                switch (term)
+                {
+                    case "Fall Term": outputtermlabel.Text = "u selected Fall term"; break;
+                    case "Summer term": outputtermlabel.Text = " u selected Summer Term"; break;
+                    case "Winter Term": outputtermlabel.Text = "u selected Winter Term"; break;
+                }
+            }
+            catch
+            {
+                //show message if there is any exception.
+                MessageBox.Show("Exception.message");
+            }
+
+
+        }
+
+        private void Whilebutton_Click(object sender, EventArgs e)
+        {
+            //declare the varaible.
+            double I_R;
+            int months;
+            double amount;
+            double balance;
+            int count = 1;
+
+            //get the number from text boxes.
+            if (int.TryParse(monthlytextBox.Text, out months))
+            {
+                if (double.TryParse(AmounttextBox.Text, out amount))
+                {
+                    if (double.TryParse(IntresttextBox.Text, out I_R))
+                    {
+                        double.TryParse(OutputOfTotalBalancelabel.Text, out balance);
+
+                        while (count <= months)
+                        {
+                            // calculate the balance.
+                            balance = balance + (amount * I_R / 100 / 12);
+
+                            //display balance in list box.
+                            loopOutputlistBox.Items.Add("the total balance of month" +
+                                count + "=" + balance.ToString("c"));
+
+                            count = count + 1;
+                        }
+
+                        // display balance in label box.
+                        OutputOfTotalBalancelabel.Text = balance.ToString("c");
+                    }
+                    else
+                    {
+                        //show message if there is invalid intrest rate.
+                        MessageBox.Show("iNvalid intrest rate");
+                    }
+                }
+                else
+                {
+                    //show message if there is invalid amount.
+                    MessageBox.Show("Please enter valid amount");
+                }
+            }
+            else
+            {
+                //show message if there is invalid months.
+                MessageBox.Show("Please enter months in the form of number");
+            }
+
+        }
+
+        private void Forbutton_Click(object sender, EventArgs e)
+        {
+            //declare the varaible.
+            double Intrest_R;
+            int monthly;
+            double money;
+            double balance;
+            int count = 1;
+
+
+            //get the number from text boxes.
+            if (int.TryParse(monthlytextBox.Text, out monthly))
+            {
+                if (double.TryParse(AmounttextBox.Text, out money))
+                {
+                    if (double.TryParse(IntresttextBox.Text, out Intrest_R))
+                    {
+                        double.TryParse(OutputOfTotalBalancelabel.Text, out balance);
+
+                        for (count = 1; count <= monthly; count++)
+                        {
+                            // calculate the balance.
+                            balance = balance + (money * Intrest_R / 100 / 12);
+
+                            // display value in list box.
+                            loopOutputlistBox.Items.Add("the total balance of month" +
+                                count + "=" + balance.ToString("c"));
+                        }
+
+                        //display value in label box.
+                        OutputOfTotalBalancelabel.Text = balance.ToString("c");
+                    }
+                    else
+                    {
+                        // show message if there is any invalid intrest rate.
+                        MessageBox.Show("iNvalid intrest rate");
+                    }
+                }
+                else
+                {
+                    // show message if there is any invalid amount.
+
+                    MessageBox.Show("Please enter valid amount");
+                }
+            }
+            else
+            {
+                // show message if there is any invalid months.
+
+                MessageBox.Show("Please enter months in the form of number");
+            }
+        }
+
+        private void Clearbutton_Click(object sender, EventArgs e)
+        {  // clear the text boxes , label , list box
+            AmounttextBox.Text = " ";
+            monthlytextBox.Text = "";
+            IntresttextBox.Text = "";
+            OutputOfTotalBalancelabel.Text = "";
+            loopOutputlistBox.Items.Clear();
+
+        }
+
+        private void AddFriendbutton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // declare input file and create file 
+                StreamWriter nameandnumberfile;
+                nameandnumberfile = File.CreateText("number or name.text");
+                nameandnumberfile.WriteLine(NametextBox.Text);
+                nameandnumberfile.Write("");
+                nameandnumberfile.WriteLine(ContacttextBox.Text);
+
+                // display the message.
+                MessageBox.Show("ur friend name and number have added successfully",
+                    NametextBox.Text, MessageBoxButtons.OK);
+                NametextBox.Text = "";
+                ContacttextBox.Text = "";
+                NametextBox.Focus();
+                ContacttextBox.Focus();
+                nameandnumberfile.Close();
+
+            }
+            catch
+            {
+                // show message in case of invalid input.
+                MessageBox.Show("invalid input");
+            }
+
+        }
+
+        private void Listbutton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // declare output file and open file 
+
+                string friendsornumber;
+                StreamReader nameandnumberfile;
+                nameandnumberfile = File.OpenText("number or name.text");
+                outputofnameandnumberlistBox.Items.Clear();
+                while (!nameandnumberfile.EndOfStream)
+                {
+                    friendsornumber = nameandnumberfile.ReadLine();
+                    outputofnameandnumberlistBox.Items.Add(friendsornumber);
+                }
+                nameandnumberfile.Close();
+            }
+            catch
+            {
+                // display the message.
+
+                MessageBox.Show("ex.message");
+            }
+
+        }
+
+        private void NewFilebutton_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+
+                // declare input file and create file 
+
+                StreamWriter nameandnumberfile;
+                nameandnumberfile = File.CreateText("number or name.text");
+                nameandnumberfile.Write("");
+                outputofnameandnumberlistBox.Items.Clear();
+                MessageBox.Show("Record is deleted ");
+                nameandnumberfile.Close();
+            }
+            catch
+            {
+                // display the message.
+
+                MessageBox.Show("ex.message");
+            }
+
+
+        }
+
+        private void button_Click(object sender, EventArgs e)
+        {
+            int number;
+            Random aman = new Random();
+            number = aman.Next(52) + 1;
+            outputRandom1label.Text = number.ToString();
+
+            Random man = new Random();
+            number = man.Next(52);
+            outputRandom2label.Text = number.ToString();
+
+
+            Random amn = new Random();
+            number = man.Next(52);
+            outputRandom3label.Text = number.ToString();
+
+            Random aan = new Random();
+            number = man.Next(52);
+            outputRandom4label.Text = number.ToString();
+
+            Random naa = new Random();
+            number = man.Next(52);
+            outputRandom5label.Text = number.ToString();
+
+            Random nma = new Random();
+            number = man.Next(52);
+            outputRandom6label.Text = number.ToString();
+
+
+        }
+
+
+        private void AmanpreeetSinghForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            // clear the text box , list boxes, label boxes.
+            AmounttextBox.Text = " ";
+            monthlytextBox.Text = "";
+            IntresttextBox.Text = "";
+            OutputOfTotalBalancelabel.Text = "";
+            loopOutputlistBox.Items.Clear();
+            inputPaswordtextBox.Text = "";
+            NumbertextBox.Text = "";
+            CourselistBox.Items.Clear();
+            selectedRadioOutputlabel.Text = "";
+            outputtermlabel.Text = "";
+            NametextBox.Text = "";
+            ContacttextBox.Text = "";
+            OutputOfTotalBalancelabel.Text = "";
+            outputofnameandnumberlistBox.Items.Clear();
+            outputRandom1label.Text = "";
+            outputRandom2label.Text = "";
+            outputRandom3label.Text = "";
+            outputRandom4label.Text = "";
+            outputRandom5label.Text = "";
+            outputRandom6label.Text = "";
+            Gradelabel.Text = "";
+        }
+    }
+
+
+}
+    
+
+
